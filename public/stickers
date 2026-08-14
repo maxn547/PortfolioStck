@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Max Nicholson — Workplace Operator &amp; Systems Builder</title>
+<meta name="description" content="Portfolio of Max Nicholson, workplace operations leader at Airtable who builds the AI agents, data platforms, and event systems that run the function.">
+<meta name="theme-color" content="#a3a5a7">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Max Nicholson — Workplace Operator &amp; Systems Builder">
+<meta property="og:description" content="I run workplace operations at Airtable and build the AI agents, data platforms, and event systems that run them.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23131313'/%3E%3Crect x='18' y='24' width='64' height='52' rx='8' fill='%23f2ede3' transform='rotate(-5 50 50)'/%3E%3Ccircle cx='50' cy='40' r='7' fill='%23131313' transform='rotate(-5 50 50)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ═════════════════════════════════════════════════════════════
+     THE STICKER SHEET
+     The site is an artboard mounted on a grey mat: one black card,
+     one cream card ruled like grid paper, and a sheet of stickers
+     that actually peel and drag. Anton does the shouting;
+     Space Grotesk does the talking.
+     ═════════════════════════════════════════════════════════════ */
+  :root{
+    --mat:#a3a5a7; --black:#131313; --cream:#f2ede3; --white:#fdfcf9;
+    --ink:#131313; --ink-soft:#3c3a36; --faint:#7c7870;
+    --teal:#7fd4c1; --pink:#ef5f8f; --yellow:#f7d038; --orange:#f28a2e;
+    --green:#93d94e; --blue:#7aa7f0; --lilac:#c3a3e8;
+    --line:#dcd6c8;
+    --disp:'Anton',Impact,sans-serif;
+    --body:'Space Grotesk',ui-sans-serif,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --ease:cubic-bezier(.22,1,.36,1);
+    --pop:cubic-bezier(.3,1.6,.5,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:24px}
+  body{
+    background:var(--mat);color:var(--ink-soft);
+    font-family:var(--body);font-size:15px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  ::selection{background:var(--yellow);color:var(--black)}
+  a{color:inherit}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+  .mat{max-width:1200px;margin-inline:auto;padding:0 clamp(14px,3vw,44px)}
+  .meta-row{display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+    padding:20px 4px 16px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:#494b4d}
+  .meta-row .c{position:absolute;left:50%;transform:translateX(-50%)}
+  .meta-row{position:relative}
+  @media (max-width:640px){ .meta-row .c{display:none} }
+
+  .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+
+  /* cards on the mat */
+  .card{border-radius:22px;overflow:hidden;position:relative}
+  .card + .card{margin-top:14px}
+  .card.black{background:var(--black);color:#cfccc4}
+  .card.cream{background:var(--cream);color:var(--ink-soft)}
+  .card.white{background:var(--white)}
+  .card-pad{padding:clamp(22px,4vw,52px)}
+
+  /* ── Reveal ── */
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .65s var(--ease),transform .65s var(--ease);
+    transition-delay:var(--d,0s)}
+  .rv.in{opacity:1;transform:none}
+
+  /* ═══ HERO (black card) ═══ */
+  .hero-nav{display:flex;align-items:center;gap:22px;padding:clamp(18px,3vw,30px) clamp(22px,4vw,52px) 0}
+  .hero-nav .mark{display:flex;align-items:center;gap:10px;font-weight:700;color:#fff;
+    font-size:14px;letter-spacing:.01em;text-decoration:none}
+  /* the wordmark pill has googly eyes: pupils track the cursor, and the
+     whole pair blinks every few seconds */
+  .hero-nav .mark i{width:34px;height:20px;border-radius:99px;background:var(--cream);
+    display:flex;align-items:center;justify-content:center;gap:5px;
+    animation:blink 4.6s infinite}
+  .hero-nav .mark .pupil{width:6px;height:6px;border-radius:50%;background:var(--black);
+    transition:transform .18s ease-out}
+  @keyframes blink{0%,91%,97%,100%{transform:scaleY(1)}94%{transform:scaleY(.12)}}
+  .hero-nav nav{margin-left:auto;display:flex;gap:22px}
+  .hero-nav nav a{font-size:13px;font-weight:500;color:#b9b6ae;text-decoration:none;
+    transition:color .15s ease}
+  .hero-nav nav a:hover{color:#fff}
+  @media (max-width:560px){
+    .hero-nav{flex-wrap:wrap;gap:10px}
+    .hero-nav nav{margin-left:0;width:100%;gap:16px}
+    .hero-nav nav a{font-size:12px}
+  }
+  .hero-head{padding:clamp(26px,5vh,64px) clamp(22px,4vw,52px) clamp(26px,4vw,48px)}
+  .hero-head h1{font-family:var(--disp);font-weight:400;color:#fff;text-transform:uppercase;
+    font-size:clamp(36px,10.6vw,150px);line-height:.92;letter-spacing:.005em}
+  .hero-head h1 .ln{display:block;overflow:hidden}
+  .hero-head h1 .ln > span{display:inline-block;transform:translateY(108%);
+    transition:transform .8s var(--ease);transition-delay:var(--d,0s)}
+  .hero-head.lit h1 .ln > span{transform:none}
+  .hero-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;
+    gap:clamp(20px,4vw,56px);align-items:start;margin-top:clamp(24px,4vh,44px);
+    border-top:1px solid #2e2e2e;padding-top:clamp(18px,3vh,28px)}
+  .hero-cols .kick{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.18em;
+    text-transform:uppercase;margin-bottom:12px}
+  .hero-cols p{font-size:15px;line-height:1.75;color:#d8d5cc;max-width:44ch}
+  .hero-cols p b{color:#fff;font-weight:500}
+  /* label-tape highlights, like strips torn off the sticker sheet */
+  .tape{font-weight:700;color:var(--black);padding:1px 6px 2px;border-radius:3px;
+    -webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .tape-y{background:var(--yellow)} .tape-p{background:var(--pink)}
+  .tape-t{background:var(--teal)} .tape-g{background:var(--green)}
+  .git{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:#fff;text-decoration:none;border-bottom:2px solid var(--yellow);padding-bottom:5px;
+    white-space:nowrap;transition:color .15s ease}
+  .git:hover{color:var(--yellow)}
+  @media (max-width:820px){ .hero-cols{grid-template-columns:1fr} }
+
+  /* ═══ STICKER BOARD (cream card, grid paper) ═══ */
+  .board{height:clamp(540px,70vh,700px);position:relative;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:34px 34px;background-position:center}
+  /* the ID badge centrepiece — draggable, like everything on the board */
+  .badge-wrap{position:absolute;left:50%;top:50%;z-index:2;cursor:grab;user-select:none;
+    touch-action:none;will-change:transform;
+    transform:translate(-50%,-47%) translate(var(--dx,0px),var(--dy,0px)) rotate(5deg)}
+  .badge-wrap:active{cursor:grabbing}
+  .badge-wrap.drag{z-index:9}
+  .lanyard{width:20px;height:128px;background:var(--black);margin:0 auto;border-radius:0 0 5px 5px;
+    position:relative}
+  .lanyard::after{content:"";position:absolute;left:50%;bottom:-9px;transform:translateX(-50%);
+    width:42px;height:16px;border-radius:6px;background:#2c2c2c}
+  .idcard{width:min(320px,66vw);background:var(--white);border:3px solid var(--black);
+    border-radius:18px;padding:22px 24px 18px;margin-top:7px;
+    box-shadow:8px 10px 0 rgba(19,19,19,.18)}
+  .idcard .hole{width:46px;height:11px;border-radius:99px;background:var(--cream);
+    border:2.5px solid var(--black);margin:0 auto 16px}
+  .idcard .face{display:flex;gap:15px;align-items:center}
+  .idcard .mug{width:66px;height:66px;border-radius:50%;background:var(--black);flex:none;
+    display:grid;place-items:center;color:var(--cream);font-family:var(--disp);font-size:25px;
+    letter-spacing:.04em}
+  .idcard .nm{font-weight:700;color:var(--black);font-size:19.5px;line-height:1.2}
+  .idcard .rl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--faint);margin-top:4px}
+  .idcard dl{margin-top:15px;border-top:2.5px solid var(--black);padding-top:11px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase}
+  .idcard dl div{display:flex;justify-content:space-between;padding-block:3.5px}
+  .idcard dt{color:var(--faint)} .idcard dd{color:var(--black);font-weight:500}
+  .idcard .bars{margin-top:13px;height:34px;
+    background:repeating-linear-gradient(90deg,var(--black) 0 2px,transparent 2px 5px,
+      var(--black) 5px 6px,transparent 6px 11px,var(--black) 11px 14px,transparent 14px 17px)}
+
+  /* stickers */
+  .stk{position:absolute;cursor:grab;user-select:none;touch-action:none;z-index:3;
+    transform:translate(var(--dx,0px),var(--dy,0px)) rotate(var(--rot,0deg));will-change:transform}
+  .stk:active{cursor:grabbing}
+  .stk.drag{z-index:9}
+  /* the slap: each sticker starts high above the page (big scale, loose
+     rotation, soft distant shadow) and lands with an overshoot while the
+     shadow snaps tight to the paper */
+  .stk-in{display:block;opacity:0;transform:scale(2.5) rotate(8deg);
+    filter:drop-shadow(0 26px 20px rgba(19,19,19,.4));
+    transition:transform .55s var(--pop) var(--d,0s),opacity .22s ease var(--d,0s),
+      filter .55s var(--ease) var(--d,0s)}
+  .stk:nth-child(even) .stk-in{transform:scale(2.5) rotate(-9deg)}
+  .in .stk-in,.stk.in .stk-in{opacity:1;transform:scale(1) rotate(0deg);
+    filter:drop-shadow(0 0 0 rgba(19,19,19,0))}
+  .stk.drag .stk-in{transform:scale(1.06);transition:transform .15s ease}
+  /* Every sticker gets its own silhouette. Shapes cut with clip-path can't
+     carry a normal border or box-shadow, so they nest: a shadow wrapper
+     (drop-shadow follows the cut), a black layer, and the colour layer
+     inset 3.5px inside it — which reads as a uniform outline. */
+  .clipshadow{display:inline-block;filter:drop-shadow(5px 6px 0 rgba(19,19,19,.2))}
+  .clip-b{display:grid;background:var(--black)}
+  .clip-i{display:grid;place-items:center;margin:3.5px;text-align:center;
+    font-family:var(--disp);text-transform:uppercase;color:var(--black);line-height:1.08}
+  .stk small{display:block;font-family:var(--mono);font-size:clamp(8.5px,1vw,11px);
+    letter-spacing:.14em;margin-top:6px;font-weight:500;text-transform:uppercase}
+  /* scalloped seal */
+  .seal-shape{clip-path:polygon(100% 50%,90.6% 60.9%,93.3% 75%,79.7% 79.7%,75% 93.3%,
+    60.9% 90.6%,50% 100%,39.1% 90.6%,25% 93.3%,20.3% 79.7%,6.7% 75%,9.4% 60.9%,0 50%,
+    9.4% 39.1%,6.7% 25%,20.3% 20.3%,25% 6.7%,39.1% 9.4%,50% 0,60.9% 9.4%,75% 6.7%,
+    79.7% 20.3%,93.3% 25%,90.6% 39.1%)}
+  .clip-b.seal-shape{width:clamp(124px,16vw,182px);height:clamp(124px,16vw,182px)}
+  .seal-shape .clip-i{padding:16px;font-size:clamp(12.5px,1.7vw,19px)}
+  /* hexagon */
+  .hex-shape{clip-path:polygon(7% 0,93% 0,100% 50%,93% 100%,7% 100%,0 50%)}
+  .hex-shape .clip-i{padding:14px 32px;font-size:clamp(12.5px,1.6vw,19px);white-space:nowrap}
+  /* speech bubble */
+  .bubble-stk{display:inline-block;position:relative;background:var(--bg);
+    border:3px solid var(--black);border-radius:16px;padding:14px 24px;
+    font-family:var(--disp);text-transform:uppercase;color:var(--black);text-align:center;
+    font-size:clamp(14px,2.2vw,26px);line-height:1.08;box-shadow:5px 6px 0 rgba(19,19,19,.2)}
+  .bubble-stk::after{content:"";position:absolute;left:30px;bottom:-12px;width:19px;height:19px;
+    background:inherit;border-right:3px solid var(--black);border-bottom:3px solid var(--black);
+    transform:rotate(45deg)}
+  /* ticket stub with punched perforation */
+  .ticket-stk{display:inline-block;position:relative;background-color:var(--bg);
+    border:3px solid var(--black);border-radius:12px;padding:15px 24px 15px 62px;
+    font-family:var(--disp);text-transform:uppercase;color:var(--black);white-space:nowrap;
+    font-size:clamp(13px,2vw,24px);line-height:1.08;box-shadow:5px 6px 0 rgba(19,19,19,.2);
+    background-image:repeating-linear-gradient(180deg,var(--black) 0 6px,transparent 6px 13px);
+    background-size:2.5px 100%;background-position:42px 0;background-repeat:no-repeat}
+  .ticket-stk::before,.ticket-stk::after{content:"";position:absolute;left:35px;
+    width:15px;height:15px;border-radius:50%;background:var(--cream);border:3px solid var(--black)}
+  .ticket-stk::before{top:-12px} .ticket-stk::after{bottom:-12px}
+  /* arch / tombstone — dashed keyline and a little asterisk in the dome,
+     echoing the event-operations ring */
+  .arch-stk{display:inline-block;position:relative;background:var(--bg);border:3px solid var(--black);
+    border-radius:999px 999px 14px 14px;padding:34px 28px 16px;text-align:center;
+    font-family:var(--disp);text-transform:uppercase;color:var(--black);
+    font-size:clamp(13px,1.9vw,22px);line-height:1.08;box-shadow:5px 6px 0 rgba(19,19,19,.2)}
+  .arch-stk::before{content:"";position:absolute;inset:5px;pointer-events:none;
+    border:1.5px dashed var(--black);border-radius:999px 999px 9px 9px;opacity:.5}
+  .arch-stk::after{content:"✳";position:absolute;top:9px;left:50%;transform:translateX(-50%);
+    font-size:clamp(12px,1.4vw,16px);line-height:1}
+  .round-stk{width:clamp(96px,14.5vw,172px);height:clamp(96px,14.5vw,172px);border-radius:50%;
+    border:3px solid var(--black);display:grid;place-items:center;text-align:center;
+    font-family:var(--disp);text-transform:uppercase;color:var(--black);
+    font-size:clamp(12px,1.9vw,21px);line-height:1.1;padding:14px;
+    box-shadow:5px 6px 0 rgba(19,19,19,.2)}
+  /* the description only fits once the circle grows to desktop size */
+  .round-stk small{display:none}
+  @media (min-width:1000px){ .round-stk small{display:block;font-size:9.5px} }
+  .ring-stk{width:clamp(104px,15.5vw,184px);height:clamp(104px,15.5vw,184px);display:block}
+  .ring-stk .disc{fill:var(--green);stroke:var(--black);stroke-width:2.5}
+  .ring-stk text{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;font-weight:500;
+    fill:var(--black);text-transform:uppercase}
+  .ring-stk .glyph{font-family:var(--disp);font-size:30px;fill:var(--black)}
+
+  /* Desktop: the badge and stickers grow into the open board space */
+  @media (min-width:1000px){
+    .board{height:clamp(660px,82vh,830px)}
+    .lanyard{width:24px;height:150px}
+    .lanyard::after{width:48px;height:18px;bottom:-10px}
+    .idcard{width:384px;padding:25px 27px 20px;border-radius:20px}
+    .idcard .hole{width:52px;height:12px;margin-bottom:18px}
+    .idcard .mug{width:74px;height:74px;font-size:28px}
+    .idcard .nm{font-size:22px}
+    .idcard .rl{font-size:11.5px}
+    .idcard dl{font-size:11.5px;margin-top:17px;padding-top:13px}
+    .idcard .bars{height:40px;margin-top:15px}
+    .clip-b.seal-shape{width:212px;height:212px}
+    .seal-shape .clip-i{font-size:22px}
+    .hex-shape .clip-i{font-size:22px;padding:17px 40px}
+    .bubble-stk{font-size:30px}
+    .ticket-stk{font-size:28px}
+    .arch-stk{font-size:26px;padding:40px 34px 22px}
+    .round-stk{width:200px;height:200px;font-size:24px}
+    .ring-stk{width:212px;height:212px}
+  }
+  /* board sticker placement */
+  .s1{left:9%;top:7%;--rot:-7deg}
+  .s2{right:7%;top:12%;--rot:5deg}
+  .s3{left:10%;bottom:6%;--rot:4deg}
+  .s4{right:3%;bottom:22%;--rot:-5deg}
+  .s5{left:30%;top:5%;--rot:3deg}
+  .s6{right:11%;bottom:3%;--rot:7deg}
+  .s7{left:2%;top:46%;--rot:-6deg}
+  /* on desktop the bigger ring and circle need a little more elbow room */
+  @media (min-width:1000px){
+    .s4{bottom:26%}
+    .s6{right:6%;bottom:2%}
+  }
+  /* Small screens: the badge takes most of the centre, so it rides higher
+     and slimmer while the stickers grow and spread into the strips above,
+     below, and beside it — nothing sits on the card's text. */
+  @media (max-width:760px){
+    .board{height:760px}
+    .badge-wrap{top:45%}
+    .idcard{width:min(280px,60vw)}
+    .clip-b.seal-shape{width:154px;height:154px}
+    .seal-shape .clip-i{font-size:14.5px}
+    .hex-shape .clip-i{font-size:15px;padding:15px 34px}
+    .bubble-stk{font-size:17px}
+    .ticket-stk{font-size:15.5px}
+    .arch-stk{font-size:15px;padding:32px 30px 20px}
+    .round-stk{width:122px;height:122px;font-size:13px}
+    .ring-stk{width:126px;height:126px}
+    .s5{left:4%;top:2%}
+    .s2{right:2%;top:8%}
+    .s1{left:1%;top:18%}
+    .s7{left:auto;right:2%;top:23%;--rot:12deg}
+    .s4{right:2%;bottom:25%}
+    .s3{left:3%;bottom:8%}
+    .s6{right:4%;bottom:2%}
+  }
+  /* Phones keep the same arrangement; the round stickers shrink a little,
+     and the orange circle rides lower so it overlaps the badge's barcode
+     corner instead of the text rows */
+  @media (max-width:480px){
+    .round-stk{width:100px;height:100px;font-size:11px;padding:10px}
+    .ring-stk{width:108px;height:108px}
+    .s1{top:15%}
+    .s4{bottom:16%}
+  }
+  .board-hint{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--faint);white-space:nowrap}
+  @media (max-width:760px){
+    .board-hint{left:16px;transform:none;white-space:normal;max-width:56%;line-height:1.5}
+  }
+
+  /* ═══ Ticker ═══ */
+  .ticker{background:var(--black);border-radius:14px;margin-top:14px;overflow:hidden;
+    padding-block:12px}
+  .ticker-track{display:flex;width:max-content;animation:tick 30s linear infinite}
+  .ticker:hover .ticker-track{animation-play-state:paused}
+  @keyframes tick{to{transform:translateX(-50%)}}
+  .ticker span{font-family:var(--disp);text-transform:uppercase;font-size:24px;line-height:1;
+    padding-right:18px;color:transparent;-webkit-text-stroke:1px #8d8a82;white-space:nowrap}
+  .ticker span::after{content:"✳";-webkit-text-stroke:0;color:var(--yellow);padding-left:18px;
+    font-size:18px;vertical-align:2px}
+  .ticker span.solid{color:var(--cream);-webkit-text-stroke:0}
+
+  /* ═══ Section headers on cards ═══ */
+  .sec-bar{display:flex;align-items:baseline;justify-content:space-between;gap:18px;
+    margin-bottom:clamp(24px,4vh,40px)}
+  .sec-bar h2{font-family:var(--disp);font-weight:400;text-transform:uppercase;color:var(--black);
+    font-size:clamp(34px,5.6vw,64px);line-height:.95;letter-spacing:.005em}
+  .sec-bar .lbl{white-space:nowrap}
+
+  /* ═══ Flagships ═══ */
+  .flag{border:2.5px solid var(--black);border-radius:18px;background:var(--white);
+    padding:clamp(20px,3.5vw,36px);position:relative;overflow:visible}
+  .flag + .flag{margin-top:18px}
+  .flag h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;color:var(--black);
+    font-size:clamp(26px,4vw,46px);line-height:.95;max-width:14ch}
+  .flag .sub{margin-top:10px;font-size:14.5px;max-width:56ch;color:var(--ink-soft)}
+  .flag .sub b{color:var(--black);font-weight:700}
+  .flag-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(20px,4vw,48px)}
+  .flag-nums{display:grid;grid-template-columns:1fr 1fr;gap:2px;align-self:center;
+    border:2px solid var(--black);border-radius:12px;overflow:hidden;background:var(--black)}
+  .flag-nums div{background:var(--cream);padding:13px 15px}
+  .flag-nums .n{font-family:var(--disp);font-size:clamp(19px,2.2vw,27px);color:var(--black);line-height:1}
+  .flag-nums .l{font-size:11px;line-height:1.4;color:var(--faint);margin-top:5px}
+  .flag .corner{position:absolute;top:-48px;right:-22px;z-index:4}
+  .flag .corner-b{top:-18px}
+  /* clip-path stars can't take a border, so the outline is a black star
+     backing with the yellow star inset inside it (same trick as the seal) */
+  .burst{width:clamp(92px,12vw,158px);height:clamp(92px,12vw,158px);display:grid;
+    background:var(--black);transform:rotate(-10deg);
+    filter:drop-shadow(3px 4px 0 rgba(19,19,19,.2));
+    clip-path:polygon(50% 0%,60% 10%,73% 4%,78% 17%,92% 15%,91% 29%,100% 36%,93% 48%,100% 61%,89% 68%,90% 82%,76% 82%,69% 95%,56% 88%,44% 98%,36% 86%,22% 90%,21% 76%,8% 71%,13% 58%,2% 49%,12% 39%,7% 25%,21% 24%,24% 10%,38% 13%)}
+  .burst > span{position:relative;display:grid;place-items:center;margin:3px;padding:22px;
+    text-align:center;font-family:var(--disp);font-size:clamp(10px,1.35vw,15.5px);line-height:1.15;
+    text-transform:uppercase;color:var(--black);background:var(--yellow);
+    clip-path:polygon(50% 0%,60% 10%,73% 4%,78% 17%,92% 15%,91% 29%,100% 36%,93% 48%,100% 61%,89% 68%,90% 82%,76% 82%,69% 95%,56% 88%,44% 98%,36% 86%,22% 90%,21% 76%,8% 71%,13% 58%,2% 49%,12% 39%,7% 25%,21% 24%,24% 10%,38% 13%)}
+  /* glitter: a twinkling speckle of light-catching flecks… */
+  .burst > span::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:
+      radial-gradient(circle 1.5px at 22% 30%,#fff 99%,transparent 100%),
+      radial-gradient(circle 1px   at 68% 20%,#fff 99%,transparent 100%),
+      radial-gradient(circle 1.6px at 82% 54%,#fffdf0 99%,transparent 100%),
+      radial-gradient(circle 1px   at 34% 72%,#fff 99%,transparent 100%),
+      radial-gradient(circle 1.3px at 56% 84%,#fffbe0 99%,transparent 100%),
+      radial-gradient(circle 1px   at 14% 56%,#fff 99%,transparent 100%),
+      radial-gradient(circle 1.4px at 46% 12%,#fffdf0 99%,transparent 100%),
+      radial-gradient(circle 1px   at 88% 34%,#fff 99%,transparent 100%),
+      radial-gradient(circle 1.2px at 70% 68%,#fff 99%,transparent 100%),
+      radial-gradient(circle 1px   at 28% 14%,#fffbe0 99%,transparent 100%);
+    animation:twinkle 2.1s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:.95}35%{opacity:.35}65%{opacity:.8}}
+  /* …plus a light sweep gliding across the foil every few seconds */
+  .burst > span::after{content:"";position:absolute;inset:-20%;pointer-events:none;
+    background:linear-gradient(115deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.55) 50%,
+      rgba(255,255,255,0) 60%);
+    transform:translateX(-130%);animation:glint 3.4s ease-in-out infinite}
+  @keyframes glint{0%{transform:translateX(-130%)}55%,100%{transform:translateX(130%)}}
+  .price-stk{display:inline-block;background:var(--pink);border:2.5px solid var(--black);
+    border-radius:12px;font-family:var(--disp);color:var(--black);text-transform:uppercase;
+    text-align:center;padding:14px 20px;font-size:clamp(13px,1.8vw,22px);line-height:1.1;
+    transform:rotate(6deg);box-shadow:4px 5px 0 rgba(19,19,19,.2)}
+  .price-stk small{display:block;font-family:var(--mono);font-size:clamp(8.5px,.9vw,10.5px);
+    letter-spacing:.12em;margin-top:5px}
+  .steps-line{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .steps-line span{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    border:1.5px solid var(--black);color:var(--black);border-radius:99px;padding:6px 12px;
+    background:var(--white)}
+  .steps-line span b{color:var(--pink);font-weight:500;margin-right:6px}
+  @media (max-width:820px){ .flag-grid{grid-template-columns:1fr} }
+  /* Small screens: the corner stickers grow and straddle the card's
+     top-right corner instead of floating in the whitespace above it */
+  @media (max-width:760px){
+    .flag{margin-top:44px}
+    .flag .corner{top:-46px;right:-10px}
+    .flag-grid .lbl{display:block;padding-right:128px}
+    .burst{width:132px;height:132px}
+    .burst > span{font-size:14px}
+    .price-stk{font-size:18px;padding:14px 18px}
+    .price-stk small{font-size:9.5px}
+  }
+
+  /* ═══ Ledger ═══ */
+  .filters{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+  .fchip{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    padding:9px 16px;border-radius:99px;border:2px solid var(--black);color:var(--black);
+    background:var(--white);transition:transform .15s var(--pop),background-color .15s ease}
+  .fchip:hover{transform:rotate(-2deg)}
+  .fchip[aria-pressed="true"]{background:var(--black);color:var(--cream)}
+  .fcount{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--faint)}
+  .row{border:2.5px solid var(--black);border-radius:16px;background:var(--white);
+    margin-bottom:10px;overflow:hidden}
+  .row.hide{display:none}
+  .row-head{width:100%;display:grid;grid-template-columns:auto minmax(0,1.2fr) minmax(0,1fr) auto 44px;
+    gap:16px;align-items:center;padding:16px 18px;text-align:left}
+  .row-head .idx{font-family:var(--disp);font-size:clamp(20px,2.4vw,30px);color:transparent;
+    -webkit-text-stroke:1.5px var(--black);line-height:1;min-width:44px}
+  .row-title{font-family:var(--disp);font-weight:400;text-transform:uppercase;
+    font-size:clamp(16px,2vw,24px);line-height:1;color:var(--black)}
+  .row-out{font-size:12.5px;color:var(--faint)}
+  .st{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:500;color:var(--black);border:2px solid var(--black);border-radius:99px;
+    padding:5px 11px;white-space:nowrap;transform:rotate(-2deg);display:inline-block}
+  .st-live{background:var(--green)} .st-pre{background:var(--orange)} .st-proto{background:#d9d4c7}
+  .row .plus{width:34px;height:34px;border:2px solid var(--black);border-radius:50%;justify-self:end;
+    display:grid;place-items:center;color:var(--black);background:var(--white);
+    transition:transform .35s var(--pop),background-color .2s ease,color .2s ease}
+  .row .plus svg{width:12px;height:12px}
+  .row.open .plus{transform:rotate(45deg);background:var(--black);color:var(--cream)}
+  .row-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+  .row.open .row-body{grid-template-rows:1fr}
+  .row-body > div{overflow:hidden}
+  .row-detail{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:26px;
+    padding:2px 18px 20px 78px}
+  .row-detail p{font-size:13.5px;line-height:1.65;color:var(--ink-soft);max-width:62ch}
+  .row-detail .out{margin-top:12px;font-size:13px;color:var(--black);background:var(--cream);
+    border:2px solid var(--black);border-radius:10px;padding:10px 14px;width:fit-content}
+  .row-detail .out b{font-weight:700}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start;justify-content:flex-end}
+  .tags span{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+    border:1.5px solid var(--black);border-radius:99px;padding:5px 10px;color:var(--black);
+    background:var(--white)}
+  @media (max-width:820px){
+    .row-head{grid-template-columns:auto minmax(0,1fr) auto 38px}
+    .row-out{display:none}
+    .row-detail{grid-template-columns:1fr;padding-left:18px;gap:14px}
+    .tags{justify-content:flex-start}
+  }
+
+  /* ═══ Numbers strip ═══ */
+  .nums{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:var(--black);
+    border-radius:16px;overflow:hidden;border:2.5px solid var(--black)}
+  .num{background:var(--cream);padding:20px 18px 22px;text-align:left}
+  .num .v{font-family:var(--disp);font-size:clamp(30px,4.4vw,56px);line-height:1;color:var(--black)}
+  .num .v small{font-size:.45em;color:var(--faint)}
+  .num .k{margin-top:8px;font-size:11.5px;line-height:1.45;color:var(--faint)}
+  .num:nth-child(1) .v{color:#0f8b6c}
+  .num:nth-child(2) .v{color:#c2337a}
+  .num:nth-child(3) .v{color:#b8860b}
+  .num:nth-child(4) .v{color:#c25b17}
+  .num:nth-child(5) .v{color:#3b63c4}
+  @media (max-width:900px){ .nums{grid-template-columns:repeat(2,1fr)} .num:last-child{grid-column:1/-1} }
+
+  /* ═══ Operator grid — paper notes pinned to the board ═══ */
+  .ops{display:grid;grid-template-columns:repeat(3,1fr);gap:24px 20px;padding-top:4px}
+  .op{position:relative;border-radius:2px;
+    padding:42px 20px 34px;
+    cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;
+    transform-origin:50% 0;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .055 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23p)'/%3E%3C/svg%3E"),
+      linear-gradient(180deg,rgba(19,19,19,.06) 0,rgba(19,19,19,.02) 20px,rgba(19,19,19,0) 38px),
+      linear-gradient(180deg,rgba(255,255,255,.12) 0 26%,rgba(19,19,19,0) 52%,rgba(19,19,19,.05) 100%),
+      linear-gradient(90deg,rgba(19,19,19,.035),rgba(19,19,19,0) 9% 91%,rgba(19,19,19,.04)),
+      color-mix(in srgb,var(--c,var(--yellow)) 92%,#fff);
+    box-shadow:0 1px 1px rgba(19,19,19,.05),0 6px 8px -6px rgba(19,19,19,.16),
+      7px 14px 20px -14px rgba(19,19,19,.2);
+    transition:opacity .45s ease var(--d,0s),transform .55s var(--pop) var(--d,0s),box-shadow .3s ease}
+  .op:active{cursor:grabbing}
+  @media (min-width:901px){ .op{min-height:232px} }
+  /* bowed-paper shadow: the bottom edge floats off the surface, so a soft
+     shadow pools beneath it — deepest under the corners where the sheet
+     curls furthest from the wall */
+  .op::after{content:"";position:absolute;left:2%;right:2%;bottom:-15px;height:17px;
+    pointer-events:none;filter:blur(3px);opacity:.85;
+    background:
+      radial-gradient(52% 100% at 15% 0,rgba(19,19,19,.3),rgba(19,19,19,0) 72%),
+      radial-gradient(52% 100% at 85% 0,rgba(19,19,19,.3),rgba(19,19,19,0) 72%),
+      radial-gradient(95% 90% at 50% 0,rgba(19,19,19,.17),rgba(19,19,19,0) 78%);
+    transition:opacity .3s ease,transform .3s ease}
+  /* the peel-on-hover lifts the bottom further, so its shadow drops and deepens */
+  .op:hover::after{opacity:1;transform:translateY(5px) scaleY(1.3)}
+  /* each sticky sits at its own slightly-off angle */
+  .ops .op:nth-child(1){--tilt:-2deg}   .ops .op:nth-child(2){--tilt:1.5deg}
+  .ops .op:nth-child(3){--tilt:-1deg}   .ops .op:nth-child(4){--tilt:2deg}
+  .ops .op:nth-child(5){--tilt:-1.4deg} .ops .op:nth-child(6){--tilt:1.1deg}
+  /* slap-on entrance: pressed down from above, settling into its tilt
+     (the translate vars carry drag offsets, so all states share them) */
+  .op.rv{transform:translate(var(--dx,0px),var(--dy,0px)) scale(1.14) rotate(calc(var(--tilt,0deg)*3.5))}
+  .op.rv.in{transform:translate(var(--dx,0px),var(--dy,0px)) rotate(var(--tilt,0deg))}
+  /* peel physics: the glued top strip stays put, the body lifts toward you */
+  .op.rv.in:hover{transform:translate(var(--dx,0px),var(--dy,0px)) perspective(700px)
+      rotateX(-6deg) rotate(calc(var(--tilt,0deg)*.45));
+    box-shadow:0 2px 2px rgba(19,19,19,.04),0 30px 34px -16px rgba(19,19,19,.42),
+      14px 34px 40px -22px rgba(19,19,19,.3)}
+  /* notes drag like everything else on the board, and re-stick with a wobble */
+  .op.drag{z-index:6;cursor:grabbing;transition:transform .06s linear,box-shadow .3s ease}
+  .op.settle{animation:restick .5s var(--ease)}
+  @keyframes restick{
+    0%{transform:translate(var(--dx,0px),var(--dy,0px)) rotate(calc(var(--tilt,0deg) + 2.4deg))}
+    55%{transform:translate(var(--dx,0px),var(--dy,0px)) rotate(calc(var(--tilt,0deg) - 1.1deg))}
+    100%{transform:translate(var(--dx,0px),var(--dy,0px)) rotate(var(--tilt,0deg))}
+  }
+  /* index scribbled in the corner */
+  .op .n{position:absolute;top:13px;left:18px;margin:0;font-family:var(--mono);
+    font-size:10px;letter-spacing:.18em;color:rgba(19,19,19,.6)}
+  .op .n b{font-weight:500}
+  /* ─── saved design: spool push-pin note holders (swap back in for .op .n
+     to hang the notes from flat push pins again) ───
+  .op .n{position:absolute;top:-38px;left:10px;margin:0;width:46px;height:62px;
+    transform:rotate(-18deg);transform-origin:50% 85%;z-index:2;
+    filter:drop-shadow(3px 5px 4px rgba(19,19,19,.3))}
+  .op .n b{position:absolute;top:0;left:1px;width:44px;height:49px;display:block;
+    text-align:center;font-family:var(--disp);font-weight:400;
+    font-size:10.5px;line-height:13px;color:var(--black);
+    background:var(--c,var(--cream));
+    -webkit-mask:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 40'%3E%3Cpath d='M5 0 H31 Q34 0 34 3.5 V6.5 Q34 10 31 10 L23 12.5 V22.5 Q31 26 32.6 30.5 Q33 31.8 33 33.5 V36.5 Q33 40 29.5 40 H6.5 Q3 40 3 36.5 V33.5 Q3 31.8 3.4 30.5 Q5 26 13 22.5 V12.5 L5 10 Q2 10 2 6.5 V3.5 Q2 0 5 0 Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+    mask:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 40'%3E%3Cpath d='M5 0 H31 Q34 0 34 3.5 V6.5 Q34 10 31 10 L23 12.5 V22.5 Q31 26 32.6 30.5 Q33 31.8 33 33.5 V36.5 Q33 40 29.5 40 H6.5 Q3 40 3 36.5 V33.5 Q3 31.8 3.4 30.5 Q5 26 13 22.5 V12.5 L5 10 Q2 10 2 6.5 V3.5 Q2 0 5 0 Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+  .op .n::before{content:"";position:absolute;top:47px;left:50%;width:3px;height:15px;
+    margin-left:-1.5px;background:#8f9296;
+    clip-path:polygon(0 0,100% 0,60% 100%,40% 100%)}
+  ─── end saved design ─── */
+  .op h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;font-size:17px;
+    line-height:1.15;color:var(--black);margin-bottom:8px}
+  .op p{font-size:12.5px;line-height:1.6;color:var(--black)}
+  @media (max-width:900px){ .ops{grid-template-columns:1fr 1fr} }
+  @media (max-width:620px){ .ops{grid-template-columns:1fr} }
+  @media (prefers-reduced-motion:reduce){
+    .op.rv{transform:translate(var(--dx,0px),var(--dy,0px)) rotate(var(--tilt,0deg))}
+  }
+
+  /* ═══ Rules (principles) ═══ */
+  .rules{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .rule{border:2.5px solid var(--black);border-radius:16px;padding:24px 24px 28px;color:var(--black);
+    position:relative;overflow:hidden}
+  .rule:nth-child(1){background:var(--teal)} .rule:nth-child(2){background:var(--pink)}
+  .rule:nth-child(3){background:var(--yellow)} .rule:nth-child(4){background:var(--green)}
+  .rule .lbl{color:var(--black);opacity:.65;display:block;margin-bottom:12px}
+  .rule h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;
+    font-size:clamp(20px,2.6vw,30px);line-height:1;max-width:14ch}
+  .rule p{margin-top:12px;font-size:13px;line-height:1.6;max-width:48ch}
+  .rule .ghost{position:absolute;right:-8px;bottom:-26px;font-family:var(--disp);
+    font-size:110px;line-height:1;opacity:.16;pointer-events:none}
+  @media (max-width:760px){ .rules{grid-template-columns:1fr} }
+
+  /* ═══ Contact (black card) ═══ */
+  .contact h2{font-family:var(--disp);font-weight:400;text-transform:uppercase;color:#fff;
+    font-size:clamp(44px,9vw,120px);line-height:.92}
+  .contact h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1.5px var(--yellow)}
+  .contact .sub{margin-top:16px;font-size:14.5px;color:#b9b6ae;max-width:52ch}
+  .contact .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .cbtn{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    padding:15px 26px;border-radius:99px;text-decoration:none;border:2px solid var(--cream);
+    color:var(--cream);transition:transform .15s var(--pop),background-color .15s ease,color .15s ease}
+  .cbtn:hover{transform:rotate(-1.5deg)}
+  .cbtn.primary{background:var(--yellow);border-color:var(--yellow);color:var(--black)}
+  .foot{display:flex;gap:12px 26px;flex-wrap:wrap;margin-top:clamp(40px,7vh,72px);
+    padding-top:18px;border-top:1px solid #333;font-family:var(--mono);font-size:10px;
+    letter-spacing:.1em;text-transform:uppercase;color:#8d8a82}
+  .foot .r{margin-left:auto}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+    .rv{opacity:1;transform:none}
+    .hero-head h1 .ln > span{transform:none}
+    .stk-in,.stk:nth-child(even) .stk-in{opacity:1;transform:none;filter:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="mat">
+  <div class="meta-row">
+    <span>Portfolio — Exploration 04</span>
+    <span class="c">Max Nicholson</span>
+    <span id="today">—</span>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <div class="card black" id="top">
+    <div class="hero-nav">
+      <a class="mark" href="#top"><i aria-hidden="true"><span class="pupil"></span><span class="pupil"></span></i>Max Nicholson</a>
+      <nav>
+        <a href="#work">Work</a>
+        <a href="#operator">Operator</a>
+        <a href="#rules">Rules</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="hero-head" id="hero">
+      <h1>
+        <span class="ln"><span style="--d:.06s">Workplace</span></span>
+        <span class="ln"><span style="--d:.18s">Operator&nbsp;&amp;</span></span>
+        <span class="ln"><span style="--d:.3s">Systems&nbsp;Builder</span></span>
+      </h1>
+      <div class="hero-cols">
+        <div class="rv" style="--d:.45s">
+          <span class="kick" style="color:var(--yellow)">01 — The operator</span>
+          <p>I'm a Senior Workplace Coordinator at <b>Airtable</b> — running the 300-person San Francisco headquarters, supporting four global offices, and delivering the company's flagship events on a <mark class="tape tape-t">~$300K annual budget</mark>.</p>
+        </div>
+        <div class="rv" style="--d:.55s">
+          <span class="kick" style="color:var(--pink)">02 — The builder</span>
+          <p>I taught myself AI-agent development and turned my own team's busiest workflows into <mark class="tape tape-p">production automation</mark>: visitors, badging, desk booking, ticketing, shipping, and events. Winner of Airtable's <mark class="tape tape-g">company-wide builders prize</mark>.</p>
+        </div>
+        <a class="git rv" style="--d:.65s" href="mailto:maxn547@gmail.com">Get in touch →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ STICKER BOARD ═══ -->
+  <div class="card cream">
+    <div class="board" id="board">
+      <div class="badge-wrap">
+        <div class="lanyard"></div>
+        <div class="idcard">
+          <div class="hole"></div>
+          <div class="face">
+            <div class="mug">MN</div>
+            <div>
+              <div class="nm">Max Nicholson</div>
+              <div class="rl">Sr. Workplace Coordinator</div>
+            </div>
+          </div>
+          <dl>
+            <div><dt>Org</dt><dd>Airtable</dd></div>
+            <div><dt>Base</dt><dd>San Francisco</dd></div>
+            <div><dt>Access</dt><dd>All systems</dd></div>
+            <div><dt>Builds with</dt><dd>Claude Code · Codex</dd></div>
+          </dl>
+          <div class="bars" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="stk s1" style="--d:.1s"><span class="stk-in"><span class="clipshadow"><span class="clip-b seal-shape"><span class="clip-i seal-shape" style="background:var(--teal)"><span>AI agent<br>fleets<small>in production</small></span></span></span></span></span></div>
+      <div class="stk s2" style="--d:.2s"><span class="stk-in"><span class="bubble-stk" style="--bg:var(--pink)">Webhooks &amp;<br>idempotency<small>250K+ events</small></span></span></div>
+      <div class="stk s3" style="--d:.3s"><span class="stk-in"><span class="clipshadow"><span class="clip-b hex-shape"><span class="clip-i hex-shape" style="background:var(--yellow)"><span>✳ Workflow automation ✳<small>seven systems · daily</small></span></span></span></span></span></div>
+      <div class="stk s4" style="--d:.4s"><span class="stk-in"><span class="round-stk" style="background:var(--orange)"><span>Built the office mgmt app<small>realtime badging &amp; desk reservations</small></span></span></span></div>
+      <div class="stk s5" style="--d:.5s"><span class="stk-in"><span class="ticket-stk" style="--bg:var(--blue)">Automated ticketing system</span></span></div>
+      <div class="stk s7" style="--d:.7s"><span class="stk-in"><span class="arch-stk" style="--bg:var(--lilac)">Vendor<br>management<small>22 vendors · 4 sites</small></span></span></div>
+      <div class="stk s6" style="--d:.6s"><span class="stk-in">
+        <svg class="ring-stk" viewBox="0 0 140 140">
+          <circle class="disc" cx="70" cy="70" r="66"/>
+          <defs><path id="ringpath" d="M70,70 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0"/></defs>
+          <text><textPath href="#ringpath">Event operations · four offices ·</textPath></text>
+          <text class="glyph" x="70" y="82" text-anchor="middle">✳</text>
+        </svg>
+      </span></div>
+
+      <span class="board-hint">Go ahead — everything on this board drags.</span>
+    </div>
+  </div>
+
+  <!-- ═══ Numbers ═══ -->
+  <div class="card cream card-pad">
+    <div class="nums rv">
+      <div class="num"><div class="v"><span data-count="65">0</span>%</div><div class="k">Fewer tickets needing a manual response after my in-house AI support agent</div></div>
+      <div class="num"><div class="v"><span data-count="15">0</span>+<small> hrs/wk</small></div><div class="k">Coordinator time saved by my automation fleet (est.)</div></div>
+      <div class="num"><div class="v">1st</div><div class="k">Airtable's company-wide AirLoop Builder Prize, won solo</div></div>
+      <div class="num"><div class="v"><span data-count="4">0</span></div><div class="k">Offices supported: SF, NYC, Austin, and London</div></div>
+      <div class="num"><div class="v">$<span data-count="300">0</span>K</div><div class="k">Annual flagship-events portfolio I plan and deliver</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ Ticker ═══ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="solid">Visitor management</span><span>Badging</span><span class="solid">Desk booking</span><span>Ticketing</span><span class="solid">Shipping</span><span>Events</span><span class="solid">Slack intake</span><span>Envoy API</span><span class="solid">Kisi &amp; Brivo</span><span>Vendor &amp; COI</span>
+      <span class="solid">Visitor management</span><span>Badging</span><span class="solid">Desk booking</span><span>Ticketing</span><span class="solid">Shipping</span><span>Events</span><span class="solid">Slack intake</span><span>Envoy API</span><span class="solid">Kisi &amp; Brivo</span><span>Vendor &amp; COI</span>
+    </div>
+  </div>
+
+  <!-- ═══ WORK ═══ -->
+  <div class="card cream card-pad" id="work">
+    <div class="sec-bar rv"><h2>Systems I've built</h2><span class="lbl">01 / Selected work</span></div>
+    <p class="rv" style="font-size:13.5px;color:var(--faint);max-width:60ch;margin:-14px 0 28px">Every project started as a manual workflow I personally ran, then rebuilt as software. The stickers are honest: <b style="color:var(--black)">live</b> means running in production today.</p>
+
+    <div class="flag rv">
+      <div class="corner sd" style="--d:.35s"><span class="stk-in"><span class="burst"><span>AirLoop Prize winner</span></span></span></div>
+      <div class="flag-grid">
+        <div>
+          <span class="lbl">Flagship A · Live daily since April 2026</span>
+          <h3 style="margin-top:10px">Reggie — the visitor agent fleet</h3>
+          <p class="sub">Multi-office visitor management was hours of daily copy-paste between the visitor platform, Slack, and building-security portals. Reggie ingests visitor data via the <b>Envoy API</b>, posts daily digests to Slack, and completes building-portal registrations end-to-end through <b>authenticated browser automation</b> — verified at every step, so nothing is submitted unchecked.</p>
+          <div class="steps-line">
+            <span><b>01</b>Ingest — Envoy sync</span>
+            <span><b>02</b>Reconcile — dedupe</span>
+            <span><b>03</b>Notify — Slack digest</span>
+            <span><b>04</b>Execute — portal automation</span>
+            <span><b>05</b>Verify — confirm before submit</span>
+          </div>
+        </div>
+        <div class="flag-nums">
+          <div><div class="n">150</div><div class="l">portal registrations in the first 5 weeks</div></div>
+          <div><div class="n">15+ hrs</div><div class="l">saved per week (est.)</div></div>
+          <div><div class="n">2 cities</div><div class="l">SF and NYC automated</div></div>
+          <div><div class="n">Daily</div><div class="l">in production since 04/2026</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flag rv">
+      <div class="corner corner-b sd" style="--d:.35s"><span class="stk-in"><span class="price-stk">$70K/yr<br>retired<small>verified contract</small></span></span></div>
+      <div class="flag-grid">
+        <div>
+          <span class="lbl">Flagship B · Migration in progress · designed &amp; built solo</span>
+          <h3 style="margin-top:10px">Hypervoy — the workplace platform</h3>
+          <p class="sub">Envoy wasn't keeping up with how the team actually runs operations, so I built its replacement. Event-driven on <b>Kisi and Brivo</b> webhooks and APIs, with eight Claude-coded interfaces: room and space booking, desk reservations with real-time alerts across <b>25+ desk situations</b>, deliveries, badge analytics, and occupancy dashboards. A monitoring agent watches the pipeline — it <b>caught a silently dropped webhook in production</b>.</p>
+          <div class="steps-line">
+            <span><b>01</b>Ingest — webhooks + APIs</span>
+            <span><b>02</b>Reconcile — idempotent dedupe</span>
+            <span><b>03</b>Model — 17-table core</span>
+            <span><b>04</b>Serve — 8 interfaces</span>
+            <span><b>05</b>Watch — monitoring agent</span>
+          </div>
+        </div>
+        <div class="flag-nums">
+          <div><div class="n">8</div><div class="l">custom interfaces built with Claude Code</div></div>
+          <div><div class="n">17</div><div class="l">tables in the data core</div></div>
+          <div><div class="n">250K+</div><div class="l">badge events reconciled</div></div>
+          <div><div class="n">972</div><div class="l">record directory matched against</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:26px"></div>
+    <div class="filters rv">
+      <button class="fchip" data-f="all" aria-pressed="true">All</button>
+      <button class="fchip" data-f="ai" aria-pressed="false">AI + agents</button>
+      <button class="fchip" data-f="data" aria-pressed="false">Data</button>
+      <button class="fchip" data-f="ops" aria-pressed="false">Ops</button>
+      <button class="fchip" data-f="events" aria-pressed="false">Events</button>
+      <span class="fcount" id="fcount">7 / 7</span>
+    </div>
+
+    <div id="projects">
+      <article class="row rv" data-cat="ai ops">
+        <button class="row-head" type="button" aria-expanded="false">
+          <span class="idx">01</span>
+          <span class="row-title">In-house AI support agent</span>
+          <span class="row-out">65% fewer tickets need a human</span>
+          <span class="st st-live">Live</span>
+          <span class="plus"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></span>
+        </button>
+        <div class="row-body"><div><div class="row-detail">
+          <div>
+            <p>Workplace tickets were answered by hand, one at a time. I first deployed and trained Risotto AI, a vendor help desk, learned its limits, then built our own in-house agent grounded in the company's Atlassian knowledge base, so answers come from our real documentation instead of guesses. It deflects tickets from the Airtable ticketing system I also built, with Slack and email intake feeding one reportable queue.</p>
+            <div class="out"><b>65% fewer tickets</b> needing a manual response.</div>
+          </div>
+          <div class="tags"><span>ai agents</span><span>atlassian kb</span><span>rag</span><span>slack</span></div>
+        </div></div></div>
+      </article>
+
+      <article class="row rv" data-cat="ops data">
+        <button class="row-head" type="button" aria-expanded="false">
+          <span class="idx">02</span>
+          <span class="row-title">Badge program rebuild</span>
+          <span class="row-out">30 stranded badges recovered</span>
+          <span class="st st-live">Live</span>
+          <span class="plus"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></span>
+        </button>
+        <div class="row-body"><div><div class="row-detail">
+          <div>
+            <p>The legacy badge-tracking base had drifted from reality: I measured 85% record drift and badges stranded with departed employees. I rebuilt the tables from the ground up, replaced 15 legacy automations with a self-correcting request/loan system, and added custom interfaces that made day-to-day badge work easy for the Workplace team.</p>
+            <div class="out"><b>30 stranded badges recovered</b>; 15 legacy automations replaced with a self-correcting system.</div>
+          </div>
+          <div class="tags"><span>airtable</span><span>custom interfaces</span><span>approval flows</span><span>data repair</span></div>
+        </div></div></div>
+      </article>
+
+      <article class="row rv" data-cat="events data ai">
+        <button class="row-head" type="button" aria-expanded="false">
+          <span class="idx">03</span>
+          <span class="row-title">Event program infrastructure</span>
+          <span class="row-out">Four-office portfolio on repeatable rails</span>
+          <span class="st st-live">Live</span>
+          <span class="plus"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></span>
+        </button>
+        <div class="row-body"><div><div class="row-detail">
+          <div>
+            <p>Company events ran on tribal knowledge. I built the reusable machinery: a city-parameterized venue-outreach pipeline with reply tracking and no-double-email guards, an RSVP/check-in/feedback system with QR distribution and AI-summarized post-event ratings, and attendance analytics correlating 484 prior-year RSVPs against comms touchpoints.</p>
+            <div class="out"><b>Four-office event portfolio</b> (picnics, holiday parties, 800-person all-hands) on repeatable rails.</div>
+          </div>
+          <div class="tags"><span>rsvp + qr</span><span>ai summaries</span><span>analytics</span><span>outreach pipeline</span></div>
+        </div></div></div>
+      </article>
+
+      <article class="row rv" data-cat="ops data">
+        <button class="row-head" type="button" aria-expanded="false">
+          <span class="idx">04</span>
+          <span class="row-title">Vendor &amp; COI system of record</span>
+          <span class="row-out">22 vendors, 4 sites, expiries surfaced</span>
+          <span class="st st-live">Live</span>
+          <span class="plus"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></span>
+        </button>
+        <div class="row-body"><div><div class="row-detail">
+          <div>
+            <p>Vendor compliance lived in inboxes. I built an 8-table system tracking 22 vendors and 64 contacts across four sites: certificate-of-insurance expiry against per-building requirements, service agreements per office, and budget-variance formulas tied to procurement.</p>
+            <div class="out"><b>Expired COIs surfaced automatically</b> on active vendors, before they became building-access problems.</div>
+          </div>
+          <div class="tags"><span>airtable</span><span>coi tracking</span><span>budget variance</span></div>
+        </div></div></div>
+      </article>
+
+      <article class="row rv" data-cat="ai">
+        <button class="row-head" type="button" aria-expanded="false">
+          <span class="idx">05</span>
+          <span class="row-title">Recognition automation</span>
+          <span class="row-out">Safety-first: cannot spend real money</span>
+          <span class="st st-pre">Pre-launch</span>
+          <span class="plus"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></span>
+        </button>
+        <div class="row-body"><div><div class="row-detail">
+          <div>
+            <p>Work-anniversary recognition meant manual gift orders every week. I built an agent that handles it end-to-end — finding upcoming anniversaries, staging shipments, and auto-generating shipping labels through the Shippo API — designed safety-first: stage-only purchasing with human-approved spend, read-only scoped tokens, and PII-safe logging. Validated end-to-end on synthetic data; in pre-launch.</p>
+            <div class="out"><b>Hard safety guarantees:</b> the agent cannot spend real money or leak personal data by construction.</div>
+          </div>
+          <div class="tags"><span>ai agents</span><span>shippo api</span><span>least privilege</span><span>synthetic testing</span></div>
+        </div></div></div>
+      </article>
+
+      <article class="row rv" data-cat="ai ops">
+        <button class="row-head" type="button" aria-expanded="false">
+          <span class="idx">06</span>
+          <span class="row-title">Candidate hosting workflow</span>
+          <span class="row-out">One intake form replaces a coordination chain</span>
+          <span class="st st-proto">Prototype</span>
+          <span class="plus"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></span>
+        </button>
+        <div class="row-body"><div><div class="row-detail">
+          <div>
+            <p>Hosting onsite interview candidates took coordinated manual work across recruiting, calendars, and the visitor system. My working prototype chains recruiter intake into auto-created calendar invites with room booking, visitor invites with NDA delivery, and auditable minimal-PII confirmations. Phased rollout planned.</p>
+            <div class="out"><b>One intake form</b> replaces a multi-team coordination chain.</div>
+          </div>
+          <div class="tags"><span>calendar api</span><span>visitor platform</span><span>minimal pii</span></div>
+        </div></div></div>
+      </article>
+
+      <article class="row rv" data-cat="events ops">
+        <button class="row-head" type="button" aria-expanded="false">
+          <span class="idx">07</span>
+          <span class="row-title">Event landing pages</span>
+          <span class="row-out">A custom-built site for every office's events</span>
+          <span class="st st-live">Live</span>
+          <span class="plus"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 1v10M1 6h10"/></svg></span>
+        </button>
+        <div class="row-body"><div><div class="row-detail">
+          <div>
+            <p>Event comms used to be a wall of Slack posts attendees had to dig back through. Now every company event, in every office, gets its own hand-coded landing page: event details, RSVP, photo galleries, FAQs, venue and travel info, dietary options — everything an attendee needs behind one link. Built for the full portfolio, from four-city simultaneous picnics (~150 guests per site, with dietary rollups and a live RSVP dashboard) to holiday parties.</p>
+            <div class="out"><b>One link per event, every office:</b> details, RSVP, photos, and FAQs on a custom-built page.</div>
+          </div>
+          <div class="tags"><span>html creation</span><span>rsvp system</span><span>live dashboard</span><span>photo galleries</span></div>
+        </div></div></div>
+      </article>
+    </div>
+  </div>
+
+  <!-- ═══ Operator ═══ -->
+  <div class="card cream card-pad" id="operator">
+    <div class="sec-bar rv"><h2>The operator side</h2><span class="lbl">02 / Why it gets adopted</span></div>
+    <p class="rv" style="font-size:13.5px;color:var(--faint);max-width:60ch;margin:-14px 0 28px">The systems above aren't side projects. They automate work I own — and that operator context is why they get adopted.</p>
+    <div class="ops">
+      <div class="op rv" style="--c:var(--teal)"><span class="n"><b>01</b></span><h3>Austin proven, HQ promoted</h3><p>Managed Airtable's Austin office (65–100 people) end to end, then relocated to run the 300-person San Francisco headquarters — building relationships, badge/access, and visitor programs, supporting NYC, Austin, and London remotely, and managing 8+ vendors day to day: performance, scopes of work, on/offboarding.</p></div>
+      <div class="op rv" style="--c:var(--pink);--d:.05s"><span class="n"><b>02</b></span><h3>Flagship events, end to end</h3><p>Own the company's flagship internal events (picnics, holiday parties, hack/build days, and 800-person all-hands where I draft the exec decks, run AV, and have MC'd) on a ~$300K annual budget.</p></div>
+      <div class="op rv" style="--c:var(--yellow);--d:.1s"><span class="n"><b>03</b></span><h3>$1M+ vendor transitions</h3><p>Led two major company-wide food-program transitions (pantry and daily lunch, each a $1M+ annual contract) from vendor selection through multi-office rollout.</p></div>
+      <div class="op rv" style="--c:var(--orange);--d:.15s"><span class="n"><b>04</b></span><h3>Built an office, trained my successor</h3><p>Onboarded 20+ hires monthly in Austin, then fully transitioned my successor when I relocated and helped train the NYC coordinator remotely.</p></div>
+      <div class="op rv" style="--c:var(--green);--d:.2s"><span class="n"><b>05</b></span><h3>Culture Committee board</h3><p>Founding Culture Ambassador, advanced to the company Culture Committee alongside the Director of Employee Experience and Chief People Officer: company-wide culture, the ambassador program, and six ERGs.</p></div>
+      <div class="op rv" style="--c:var(--blue);--d:.25s"><span class="n"><b>06</b></span><h3>Self-taught builder</h3><p>Taught myself Claude Code, OpenAI Codex, and AI-agent development, then applied them to the workflows I knew best. Operator first, builder because of it.</p></div>
+    </div>
+  </div>
+
+  <!-- ═══ Rules ═══ -->
+  <div class="card cream card-pad" id="rules">
+    <div class="sec-bar rv"><h2>House rules</h2><span class="lbl">03 / How I build</span></div>
+    <div class="rules">
+      <div class="rule rv"><span class="ghost">01</span><span class="lbl">Rule 01</span><h3>Automate what you personally run</h3><p>Every system started as my own manual workflow. I don't guess at requirements. I've done the job the software replaces.</p></div>
+      <div class="rule rv" style="--d:.06s"><span class="ghost">02</span><span class="lbl">Rule 02</span><h3>Safety before capability</h3><p>Least-privilege tokens, stage-only spending, PII-safe logging, human approval where it matters. Agents earn autonomy; they don't start with it.</p></div>
+      <div class="rule rv" style="--d:.12s"><span class="ghost">03</span><span class="lbl">Rule 03</span><h3>Verify, don't hope</h3><p>Idempotent ingestion, verification before submission, and monitoring agents watching the pipelines; one caught a silently dropped webhook in production.</p></div>
+      <div class="rule rv" style="--d:.18s"><span class="ghost">04</span><span class="lbl">Rule 04</span><h3>Honest status, always</h3><p>Live means live. Pre-launch means pre-launch. The same discipline applies to metrics: estimates are labeled as estimates.</p></div>
+    </div>
+  </div>
+
+  <!-- ═══ Contact ═══ -->
+  <div class="card black card-pad contact" id="contact">
+    <span class="lbl rv" style="color:#8d8a82">04 / Correspondence</span>
+    <h2 class="rv" style="--d:.05s;margin-top:14px">Let's <em>talk.</em></h2>
+    <p class="sub rv" style="--d:.1s">Hiring for workplace ops, people systems, or AI deployment? Open to workplace &amp; systems roles.</p>
+    <div class="cta rv" style="--d:.15s">
+      <a class="cbtn primary" href="mailto:maxn547@gmail.com">maxn547@gmail.com</a>
+      <a class="cbtn" href="https://www.linkedin.com/in/maximus-nicholson/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+    </div>
+    <div class="foot">
+      <span>San Francisco, CA</span>
+      <span>Metrics from live records; estimates labeled</span>
+      <span class="r">Built by hand · <span id="year">2026</span></span>
+    </div>
+  </div>
+
+  <div class="meta-row">
+    <span>Workplace Operator &amp; Systems Builder</span>
+    <span class="r">©'21 — Present</span>
+  </div>
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Hero entrance + dates */
+  requestAnimationFrame(function(){
+    document.getElementById('hero').classList.add('lit');
+    document.querySelectorAll('#hero .rv').forEach(function(el){ el.classList.add('in'); });
+  });
+  var now = new Date();
+  document.getElementById('today').textContent =
+    new Intl.DateTimeFormat('en-US',{month:'short',day:'2-digit'}).format(now) + ' — ' + now.getFullYear();
+  document.getElementById('year').textContent = now.getFullYear();
+
+  /* Reveals (stickers pop when their container enters view) */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -36px 0px'});
+  document.querySelectorAll('.rv, .stk, .sd').forEach(function(el){ io.observe(el); });
+
+  /* Draggable stickers (and sticky notes). Position rides CSS vars so the
+     resting rotation stays intact; entrance pop lives on the inner element
+     so the two transforms never fight. */
+  document.querySelectorAll('.stk, .badge-wrap, .op').forEach(function(st){
+    var px = 0, py = 0, ox = 0, oy = 0, dragging = false, moved = false;
+    st.addEventListener('pointerdown', function(e){
+      dragging = true; moved = false;
+      px = e.clientX; py = e.clientY;
+      ox = parseFloat(st.dataset.dx || 0); oy = parseFloat(st.dataset.dy || 0);
+      st.classList.add('drag');
+      try{ st.setPointerCapture(e.pointerId); }catch(err){}
+      e.preventDefault();
+    });
+    st.addEventListener('pointermove', function(e){
+      if(!dragging) return;
+      var dx = ox + e.clientX - px, dy = oy + e.clientY - py;
+      if(Math.abs(dx - ox) + Math.abs(dy - oy) > 3) moved = true;
+      st.dataset.dx = dx; st.dataset.dy = dy;
+      st.style.setProperty('--dx', dx + 'px');
+      st.style.setProperty('--dy', dy + 'px');
+    });
+    function drop(){
+      if(!dragging) return;
+      dragging = false; st.classList.remove('drag');
+      /* sticky notes wobble as they re-stick */
+      if(moved && st.classList.contains('op')){
+        st.classList.add('settle');
+        st.addEventListener('animationend', function h(){
+          st.classList.remove('settle');
+          st.removeEventListener('animationend', h);
+        });
+      }
+    }
+    st.addEventListener('pointerup', drop);
+    st.addEventListener('pointercancel', drop);
+  });
+
+  /* Googly eyes: pupils lean toward the cursor */
+  var eyes = document.querySelector('.mark i');
+  if(eyes && !reduce){
+    var pupils = eyes.querySelectorAll('.pupil'), eyeTick = false;
+    document.addEventListener('mousemove', function(e){
+      if(eyeTick) return;
+      eyeTick = true;
+      requestAnimationFrame(function(){
+        var r = eyes.getBoundingClientRect();
+        var a = Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2));
+        var tx = (Math.cos(a) * 4).toFixed(1), ty = (Math.sin(a) * 3).toFixed(1);
+        pupils.forEach(function(p){ p.style.transform = 'translate(' + tx + 'px,' + ty + 'px)'; });
+        eyeTick = false;
+      });
+    }, {passive:true});
+  }
+
+  /* Count-ups */
+  function countUp(el){
+    var end = parseInt(el.dataset.count, 10), t0 = null, dur = 2600;
+    if(reduce){ el.textContent = end; return; }
+    function frame(t){
+      if(!t0) t0 = t;
+      var p = Math.min((t - t0) / dur, 1), eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(end * eased);
+      if(p < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  var cio = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); cio.unobserve(e.target); } });
+  }, {threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(function(el){ cio.observe(el); });
+
+  /* Filters */
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#projects .row')),
+      count = document.getElementById('fcount');
+  document.querySelectorAll('.fchip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      document.querySelectorAll('.fchip').forEach(function(c){ c.setAttribute('aria-pressed','false'); });
+      chip.setAttribute('aria-pressed','true');
+      var f = chip.dataset.f, shown = 0;
+      rows.forEach(function(row){
+        var match = f === 'all' || row.dataset.cat.split(' ').indexOf(f) !== -1;
+        row.classList.toggle('hide', !match);
+        if(match) shown++;
+      });
+      count.textContent = shown + ' / ' + rows.length;
+    });
+  });
+
+  /* Expandable rows */
+  rows.forEach(function(row){
+    var head = row.querySelector('.row-head');
+    head.addEventListener('click', function(){
+      var open = row.classList.toggle('open');
+      head.setAttribute('aria-expanded', String(open));
+    });
+  });
+})();
+</script>
+</body>
+</html>
